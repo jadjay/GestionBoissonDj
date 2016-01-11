@@ -1,6 +1,7 @@
 from __future__ import unicode_literals
 
 from django.db import models
+from django.forms import ModelForm
 from django.contrib.auth.models import User
 from boissons.models import boissons
 
@@ -9,6 +10,8 @@ class consommateurs(models.Model):
 	def __str__(self):
 		return "%s" % (self.user.username)
 	user = models.OneToOneField(User, on_delete=models.CASCADE)
+	activation_key = models.CharField(max_length=60)
+	key_expires = models.DateTimeField()
 
 class consommation(models.Model):
 	def __str__(self):
@@ -18,3 +21,8 @@ class consommation(models.Model):
 	consommateur = models.ForeignKey('consommateurs')
 	boisson = models.ForeignKey('boissons.boissons')
 	manuel = models.BooleanField(default=True)
+
+class ConsommateursForm(ModelForm):
+	class Meta:
+		model = User
+		fields = ('username', 'email', 'password')

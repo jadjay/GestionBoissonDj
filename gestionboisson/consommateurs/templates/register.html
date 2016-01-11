@@ -1,0 +1,11 @@
+{% load staticfiles %}
+
+<head>
+<link rel="stylesheet" href="{% static 'consommateurs/style.css' %}">
+</head>
+
+<form action="/consommateurs/register" method="post">
+    {{ form }}
+<!--	tutuaaa -->
+    <input type="submit" value="Submit" />
+</form>

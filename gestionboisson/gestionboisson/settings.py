@@ -25,6 +25,27 @@ SECRET_KEY = 'xy9-21fun6f_g@_h*dxm%c)utt)4rqh@k(837pc724@9irvnhv'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': '%s/debug.log' % (BASE_DIR),
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['file'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    },
+}
+
+
+
 ALLOWED_HOSTS = []
 
 
