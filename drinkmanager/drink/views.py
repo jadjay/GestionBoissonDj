@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import Drink, Stock, Consumption
 
@@ -10,12 +10,15 @@ def index(request):
     return render(request, 'drink/index.html', context)
 
 def take(request, drink_name):
-    mydrink = Drink.objects.get(name=drink_name)
-    mystock=mydrink.lastStock()
-    mystock.quantity -= 1
-    mystock.save()
-    myconso=Consumption.objects.create(drink=mydrink,user=request.user)
-    return show(request,drink_name)
+    if request.user.is_authenticated():
+        mydrink = Drink.objects.get(name=drink_name)
+        mystock=mydrink.lastStock()
+        mystock.quantity -= 1
+        mystock.save()
+        myconso=Consumption.objects.create(drink=mydrink,user=request.user)
+        return show(request,drink_name)
+    else:
+        return redirect('auth_login')
 
 def show(request, drink_name):
     mydrink = Drink.objects.get(name=drink_name)

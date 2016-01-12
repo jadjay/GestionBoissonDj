@@ -15,10 +15,11 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
-#from drinkmanager.drinkmanager import views
+from . import views
+from drink import views as dviews
 
 urlpatterns = [
-#    url(r'^/$', views.index, name='index'),
+    url(r'^$', dviews.index, name='index'),
     url(r'^drink/', include('drink.urls')),
     url(r'^admin/', admin.site.urls),
     url(r'^accounts/', include('registration.backends.hmac.urls')),
