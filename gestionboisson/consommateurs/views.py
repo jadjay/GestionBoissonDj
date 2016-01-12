@@ -41,15 +41,10 @@ def register(request):
 #		logger.error('AUTH!')
 #		# They already have an account; don't let them register again
 #		return render_to_response('register.html', {'has_account': True})
-	manipulator = NewConsommateursForm()
 	if request.POST:
-		logger.error('POST!')
-		new_data = request.POST.copy()
-		errors = manipulator.get_validation_errors(new_data)
-		if not errors:
-			# Save the user
-			manipulator.do_html2python(new_data)
-			new_user = manipulator.save(new_data)
+		form = NewConsommateursForm(request.POST)
+		if form.is_valid:
+			form.save()
 			
 			# Build the activation key for their account
 			salt = sha.new(str(random.random())).hexdigest()[:5]

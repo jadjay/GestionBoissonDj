@@ -20,4 +20,5 @@ urlpatterns = [
     url(r'^boissons/', include('boissons.urls')),
     url(r'^consommateurs/', include('consommateurs.urls')),
     url(r'^admin/', admin.site.urls),
+    url(r'^accounts/', include('registration.backends.hmac.urls')),
 ]

@@ -1,0 +1,9 @@
+label {
+	display: inline;
+}
+input {
+	display: block;
+}
+.block {
+	display: inline-block;
+}
