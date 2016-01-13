@@ -38,8 +38,8 @@ cat docker-compose.yml
       ports:
         - "8000:8000"
 cat execution_file.sh
-  #!/bin/bash
-  cd GestionBoissonDj/drinkmanager/
-  python manage.py runserver 0.0.0.0:8000
+      #!/bin/bash
+      cd GestionBoissonDj/drinkmanager/
+      python manage.py runserver 0.0.0.0:8000
 docker-compose up
 ```
