@@ -33,6 +33,7 @@ LOGIN_REDIRECT_URL = '/' #Or whatever you wish
 # Application definition
 
 INSTALLED_APPS = [
+    'registration',
     'qrcode',
     'drink',
     'django.contrib.admin',

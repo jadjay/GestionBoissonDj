@@ -7,12 +7,12 @@ from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 def index(request):
-    if request.user.is_authenticated():
-        drinks = Drink.objects.all
-        context = { 'drinks': drinks }
-        return render(request, 'drink/index.html', context)
-    else:
-        return redirect('auth_login')
+#    if request.user.is_authenticated():
+     drinks = Drink.objects.all
+     context = { 'drinks': drinks }
+     return render(request, 'drink/index.html', context)
+#    else:
+#        return redirect('auth_login')
 
 @login_required
 def take(request, drink_name):
