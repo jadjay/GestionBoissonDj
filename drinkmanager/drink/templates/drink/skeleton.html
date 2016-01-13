@@ -2,7 +2,11 @@
 <!DOCTYPE HTML>
 <html>
   <head>
-    <title>DrinkManager</title>
+    <title>
+      {% block title %}
+        DrinkManager
+      {% endblock %}
+    </title>
     {% block css %}
 	<link rel="stylesheet" href="{% static 'drink/style.css' %}">
     {% endblock %}

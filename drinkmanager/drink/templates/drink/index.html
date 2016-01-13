@@ -2,14 +2,46 @@
 {% load staticfiles %}
 {% load qr_tags %}
 
+{% block header %}
+<h1>Home</h1>
+{% endblock %}
 {% block content %}
 {% for drink in drinks %}
- <div class="block">
- <a href="{% url 'drink-take' drink.name %}">
- 	<p><img src="{% static drink.photo.url %}"/></p>
-	<p>Solde : {{ drink.lastStock.quantity }}</p>
-	<p>{% qr_from_text "http://jav.6num.fr/drink/take/"|add:drink.name %}</p>
-  </a>
-</div>
+  <div class="block">
+    <table>
+      <tr>
+        <td>
+          <img src="{% static drink.photo.url %}"/>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <a href="{% url 'drink-take' drink.name %}">
+            {{ drink.name }}
+          </a>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Solde : {{ drink.lastStock.quantity }}
+        </td>
+      </tr>
+      <tr>
+        <td>
+          {% url 'drink-take' drink.name as myurl %}
+          {% qr_from_text baseurl|add:myurl %}
+        </td>
+      </tr>
+    </table>
+  </div>
 {% endfor %}
 {% endblock %}
+{% comment %}
+  <div class="block">
+    <a href="{% url 'drink-take' drink.name %}">
+      <p><img src="{% static drink.photo.url %}"/></p>
+      <p>Solde : {{ drink.lastStock.quantity }}</p>
+      <p>{% qr_from_text "http://jav.6num.fr/drink/take/"|add:drink.name %}</p>
+    </a>
+  </div>
+{% endcomment %}

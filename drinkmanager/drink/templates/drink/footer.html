@@ -1,6 +1,21 @@
-<!--
-<p><a href="{% url 'registration_register' %}"> S'inscrire </a> - <a href="{% url 'auth_login' %}"> Se connecter </a></p>
--->
-<p>{% if request.user.is_authenticated %} {{ request.user.username }} - <a href="{% url 'django.contrib.auth.views.logout' %}">Se déconnecter</a>{% else %}<a href="{% url 'django.contrib.auth.views.login' %}">Se connecter</a>/<a href="{% url 'registration_register' %}">S'enregistrer</a>{% endif %} - <a href={% url 'index' %}>Home</a></p>
+<p>
+{% if request.user.is_authenticated %}
+	{{ request.user.username }} - <a href="{% url 'django.contrib.auth.views.logout' %}">Se déconnecter</a>
+{% else %}
+	<a href="{% url 'django.contrib.auth.views.login' %}">Se connecter</a>/<a href="{% url 'registration_register' %}">S'enregistrer</a>
+{% endif %}
+ - <a href={% url 'index' %}>Home</a>
+</p>
+
+
 {% comment "Optional note" %}
+<p>
+<a href='{{ basehost }}{% url 'registration_activate' "123abc" %}'>
+{{ basehost }}{% url 'registration_activate' "123abc" %}</a>
+</p>
+<p>
+<a href='{{ baseurl }}{% url 'registration_activate' "123abc" %}'>
+{{ baseurl }}{% url 'registration_activate' "123abc" %}</a>
+</p>
+http://{{ site.domain }}{% url 'registration_activate' "toto" %}
 {% endcomment %}

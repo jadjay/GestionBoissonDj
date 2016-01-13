@@ -8,6 +8,10 @@ input {
 	display: inline-block;
 }
 
+td {
+	text-align: center;
+}
+
 table,th,td {
 	border-collapse: collapse;
 	border: 1px solid black;
