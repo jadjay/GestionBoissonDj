@@ -1,14 +1,20 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import Drink, Stock, Consumption
+from django.contrib.auth.decorators import login_required
+
 
 # Create your views here.
 
 def index(request):
-    drinks = Drink.objects.all
-    context = { 'drinks': drinks }
-    return render(request, 'drink/index.html', context)
+    if request.user.is_authenticated():
+        drinks = Drink.objects.all
+        context = { 'drinks': drinks }
+        return render(request, 'drink/index.html', context)
+    else:
+        return redirect('auth_login')
 
+@login_required
 def take(request, drink_name):
     if request.user.is_authenticated():
         mydrink = Drink.objects.get(name=drink_name)
