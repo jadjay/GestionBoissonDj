@@ -8,7 +8,7 @@
  <a href="{% url 'drink-take' drink.name %}">
  	<p><img src="{% static drink.photo.url %}"/></p>
 	<p>Solde : {{ drink.lastStock.quantity }}</p>
-	<p>{% qr_from_text "http://127.0.0.1:8000/drink/take/"|add:drink.name %}</p>
+	<p>{% qr_from_text "http://jav.6num.fr/drink/take/"|add:drink.name %}</p>
   </a>
 </div>
 {% endfor %}
