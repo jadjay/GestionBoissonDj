@@ -8,6 +8,7 @@
 {% block content %}
 {% for drink in drinks %}
   <div class="block">
+          <a href="{% url 'drink-take' drink.name %}">
     <table>
       <tr>
         <td>
@@ -16,9 +17,7 @@
       </tr>
       <tr>
         <td>
-          <a href="{% url 'drink-take' drink.name %}">
             {{ drink.name }}
-          </a>
         </td>
       </tr>
       <tr>
@@ -33,6 +32,7 @@
         </td>
       </tr>
     </table>
+          </a>
   </div>
 {% endfor %}
 {% endblock %}
